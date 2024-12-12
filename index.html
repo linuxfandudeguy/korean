@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Korean Romanization</title>
+  <!-- Bootstrap CSS -->
+  <link href="./assets/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    .container {
+      max-width: 600px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container my-5">
+    <h1 class="text-center mb-4">Korean Romanization Tool</h1>
+
+    <div class="mb-3">
+      <label for="koreanInput" class="form-label">Enter Korean Text:</label>
+      <textarea
+        id="koreanInput"
+        class="form-control"
+        rows="4"
+        placeholder="Enter Korean text here..."
+      ></textarea>
+    </div>
+
+    <button class="btn btn-primary w-100" id="romanizeButton">
+      <i class="bi bi-arrow-right-circle"></i> Romanize
+    </button>
+
+    <div id="outputContainer" class="mt-4" style="display: none;">
+      <label for="romanizedOutput" class="form-label">Romanized Output:</label>
+      <textarea
+        id="romanizedOutput"
+        class="form-control"
+        rows="4"
+        readonly
+      ></textarea>
+    </div>
+  </div>
+
+  <script src="./assets/bootstrap.bundle.min.js"></script>
+
+  <script src="./assets/aromanize.min.js"></script>
+
+  <script>
+    window.onload = function() {
+      const inputTextArea = document.getElementById('koreanInput');
+      const outputTextArea = document.getElementById('romanizedOutput');
+      const outputContainer = document.getElementById('outputContainer');
+
+      // Ensure Aromanize.romanize function is available after the script is loaded
+      if (typeof Aromanize.romanize === 'undefined') {
+        console.error("The 'Aromanize.romanize' function is not available. Check the script inclusion.");
+        return;
+      }
+
+      // Handle the Romanization process
+      function handleRomanize() {
+        const inputText = inputTextArea.value;
+        if (inputText && Aromanize.romanize) {
+          const outputText = Aromanize.romanize(inputText); // Convert input to Romanized text
+          outputTextArea.value = outputText;
+          outputContainer.style.display = 'block'; // Show output area
+        }
+      }
+
+      document.getElementById('romanizeButton').addEventListener('click', handleRomanize);
+    };
+  </script>
+</body>
+</html>
