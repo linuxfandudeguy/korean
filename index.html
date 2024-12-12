@@ -42,7 +42,7 @@
   </div>
 
   <script src="./assets/bootstrap.bundle.min.js"></script>
-
+  <script src="./assets/darkmode-js.min.js"></script>
   <script src="./assets/aromanize.min.js"></script>
 
   <script>
@@ -70,5 +70,8 @@
       document.getElementById('romanizeButton').addEventListener('click', handleRomanize);
     };
   </script>
+<script>
+   function addDarkmodeWidget(){new Darkmode({label:"🌗"}).showWidget()}window.addEventListener("load",addDarkmodeWidget);
+</script>
 </body>
 </html>
